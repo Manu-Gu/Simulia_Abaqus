@@ -1,0 +1,208 @@
+# -*- coding: mbcs -*-
+from part import *
+from material import *
+from section import *
+from assembly import *
+from step import *
+from interaction import *
+from load import *
+from mesh import *
+from optimization import *
+from job import *
+from sketch import *
+from visualization import *
+from connectorBehavior import *
+mdb.models['Model-1'].ConstrainedSketch(name='__profile__', sheetSize=200.0)
+mdb.models['Model-1'].sketches['__profile__'].CircleByCenterPerimeter(center=(
+    0.0, 0.0), point1=(30.0, 0.0))
+mdb.models['Model-1'].Part(dimensionality=THREE_D, name='Part-1', type=
+    DEFORMABLE_BODY)
+mdb.models['Model-1'].parts['Part-1'].BaseShell(sketch=
+    mdb.models['Model-1'].sketches['__profile__'])
+del mdb.models['Model-1'].sketches['__profile__']
+mdb.models['Model-1'].parts['Part-1'].seedPart(deviationFactor=0.1, 
+    minSizeFactor=0.1, size=8.5)
+mdb.models['Model-1'].parts['Part-1'].generateMesh()
+mdb.models['Model-1'].parts['Part-1'].deleteMesh()
+mdb.models['Model-1'].parts['Part-1'].setMeshControls(algorithm=MEDIAL_AXIS, 
+    regions=mdb.models['Model-1'].parts['Part-1'].faces.getSequenceFromMask((
+    '[#1 ]', ), ))
+mdb.models['Model-1'].parts['Part-1'].generateMesh()
+mdb.models['Model-1'].parts['Part-1'].deleteMesh()
+mdb.models['Model-1'].ConstrainedSketch(gridSpacing=4.23, name='__profile__', 
+    sheetSize=169.24, transform=
+    mdb.models['Model-1'].parts['Part-1'].MakeSketchTransform(
+    sketchPlane=mdb.models['Model-1'].parts['Part-1'].faces[0], 
+    sketchPlaneSide=SIDE1, 
+    sketchUpEdge=mdb.models['Model-1'].parts['Part-1'].edges[0], 
+    sketchOrientation=RIGHT, origin=(0.0, 0.0, 0.0)))
+mdb.models['Model-1'].parts['Part-1'].projectReferencesOntoSketch(filter=
+    COPLANAR_EDGES, sketch=mdb.models['Model-1'].sketches['__profile__'])
+mdb.models['Model-1'].sketches['__profile__'].rectangle(point1=(-12.69, 12.69), 
+    point2=(12.69, -12.69))
+mdb.models['Model-1'].sketches['__profile__'].Line(point1=(-12.69, 12.69), 
+    point2=(25.38, -25.38))
+mdb.models['Model-1'].sketches['__profile__'].Line(point1=(25.38, -25.38), 
+    point2=(-28.5524999996461, 28.5524999987985))
+mdb.models['Model-1'].sketches['__profile__'].ParallelConstraint(addUndoState=
+    False, entity1=mdb.models['Model-1'].sketches['__profile__'].geometry[7], 
+    entity2=mdb.models['Model-1'].sketches['__profile__'].geometry[8])
+mdb.models['Model-1'].sketches['__profile__'].undo()
+mdb.models['Model-1'].sketches['__profile__'].Line(point1=(-12.69, 12.69), 
+    point2=(-29.61, 29.61))
+mdb.models['Model-1'].sketches['__profile__'].Line(point1=(0.0, 0.0), point2=(
+    -29.61, -29.61))
+mdb.models['Model-1'].sketches['__profile__'].Line(point1=(-29.61, -29.61), 
+    point2=(29.6100000009344, 29.6100000001676))
+mdb.models['Model-1'].sketches['__profile__'].ParallelConstraint(addUndoState=
+    False, entity1=mdb.models['Model-1'].sketches['__profile__'].geometry[9], 
+    entity2=mdb.models['Model-1'].sketches['__profile__'].geometry[10])
+mdb.models['Model-1'].sketches['__profile__'].autoTrimCurve(curve1=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[7], point1=(
+    -9.05353164672852, 9.07200050354004))
+mdb.models['Model-1'].sketches['__profile__'].autoTrimCurve(curve1=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[11], point1=(
+    5.1990852355957, -5.31806564331055))
+mdb.models['Model-1'].sketches['__profile__'].autoTrimCurve(curve1=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[10], point1=(
+    4.66125106811523, 5.0499324798584))
+mdb.models['Model-1'].sketches['__profile__'].autoTrimCurve(curve1=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[9], point1=(
+    -4.12338256835938, -3.44109916687012))
+mdb.models['Model-1'].sketches['__profile__'].autoTrimCurve(curve1=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[13], point1=(
+    -2.24095916748047, -2.72606658935547))
+mdb.models['Model-1'].parts['Part-1'].PartitionFaceBySketch(faces=
+    mdb.models['Model-1'].parts['Part-1'].faces.getSequenceFromMask(('[#1 ]', 
+    ), ), sketch=mdb.models['Model-1'].sketches['__profile__'], sketchUpEdge=
+    mdb.models['Model-1'].parts['Part-1'].edges[0])
+del mdb.models['Model-1'].sketches['__profile__']
+mdb.models['Model-1'].parts['Part-1'].setMeshControls(elemShape=QUAD, regions=
+    mdb.models['Model-1'].parts['Part-1'].faces.getSequenceFromMask(('[#16 ]', 
+    ), ), technique=STRUCTURED)
+mdb.models['Model-1'].parts['Part-1'].setMeshControls(regions=
+    mdb.models['Model-1'].parts['Part-1'].faces.getSequenceFromMask(('[#1 ]', 
+    ), ), technique=STRUCTURED)
+mdb.models['Model-1'].parts['Part-1'].setMeshControls(regions=
+    mdb.models['Model-1'].parts['Part-1'].faces.getSequenceFromMask(('[#8 ]', 
+    ), ), technique=STRUCTURED)
+mdb.models['Model-1'].parts['Part-1'].seedEdgeByNumber(constraint=FINER, edges=
+    mdb.models['Model-1'].parts['Part-1'].edges.getSequenceFromMask(('[#988 ]', 
+    ), ), number=6)
+mdb.models['Model-1'].parts['Part-1'].generateMesh(regions=
+    mdb.models['Model-1'].parts['Part-1'].faces.getSequenceFromMask(('[#10 ]', 
+    ), ))
+mdb.models['Model-1'].parts['Part-1'].seedEdgeByNumber(constraint=FINER, edges=
+    mdb.models['Model-1'].parts['Part-1'].edges.getSequenceFromMask((
+    '[#1462 ]', ), ), number=6)
+mdb.models['Model-1'].parts['Part-1'].seedEdgeByNumber(constraint=FINER, edges=
+    mdb.models['Model-1'].parts['Part-1'].edges.getSequenceFromMask(('[#215 ]', 
+    ), ), number=3)
+mdb.models['Model-1'].parts['Part-1'].generateMesh(regions=
+    mdb.models['Model-1'].parts['Part-1'].faces.getSequenceFromMask(('[#f ]', 
+    ), ))
+mdb.models['Model-1'].parts['Part-1'].generateMesh(regions=
+    mdb.models['Model-1'].parts['Part-1'].faces.getSequenceFromMask(('[#1f ]', 
+    ), ), seedConstraintOverride=ON)
+mdb.models['Model-1'].parts['Part-1'].deleteMesh(regions=
+    mdb.models['Model-1'].parts['Part-1'].faces.getSequenceFromMask(('[#8 ]', 
+    ), ))
+mdb.models['Model-1'].parts['Part-1'].seedEdgeByNumber(constraint=FINER, edges=
+    mdb.models['Model-1'].parts['Part-1'].edges.getSequenceFromMask((
+    '[#1000 ]', ), ), number=3)
+mdb.models['Model-1'].parts['Part-1'].generateMesh(regions=
+    mdb.models['Model-1'].parts['Part-1'].faces.getSequenceFromMask(('[#8 ]', 
+    ), ))
+mdb.models['Model-1'].parts['Part-1'].deleteMesh()
+mdb.models['Model-1'].parts['Part-1'].deleteSeeds()
+del mdb.models['Model-1'].parts['Part-1']
+mdb.models['Model-1'].ConstrainedSketch(name='__profile__', sheetSize=200.0)
+mdb.models['Model-1'].sketches['__profile__'].CircleByCenterPerimeter(center=(
+    0.0, 0.0), point1=(30.0, 0.0))
+mdb.models['Model-1'].Part(dimensionality=THREE_D, name='Part-1', type=
+    DEFORMABLE_BODY)
+mdb.models['Model-1'].parts['Part-1'].BaseShell(sketch=
+    mdb.models['Model-1'].sketches['__profile__'])
+del mdb.models['Model-1'].sketches['__profile__']
+mdb.models['Model-1'].parts['Part-1'].PartitionEdgeByParam(edges=
+    mdb.models['Model-1'].parts['Part-1'].edges.getSequenceFromMask(('[#1 ]', 
+    ), ), parameter=0.512713967762222)
+mdb.models['Model-1'].ConstrainedSketch(gridSpacing=4.23, name='__profile__', 
+    sheetSize=169.45, transform=
+    mdb.models['Model-1'].parts['Part-1'].MakeSketchTransform(
+    sketchPlane=mdb.models['Model-1'].parts['Part-1'].faces[0], 
+    sketchPlaneSide=SIDE1, 
+    sketchUpEdge=mdb.models['Model-1'].parts['Part-1'].edges[1], 
+    sketchOrientation=RIGHT, origin=(0.0, 0.0, 0.0)))
+mdb.models['Model-1'].parts['Part-1'].projectReferencesOntoSketch(filter=
+    COPLANAR_EDGES, sketch=mdb.models['Model-1'].sketches['__profile__'])
+mdb.models['Model-1'].sketches['__profile__'].undo()
+mdb.models['Model-1'].sketches['__profile__'].undo()
+#* 没有可撤销的操作.
+mdb.models['Model-1'].sketches['__profile__'].rectangle(point1=(-12.69, 12.69), 
+    point2=(12.69, -12.69))
+mdb.models['Model-1'].sketches['__profile__'].undo()
+mdb.models['Model-1'].sketches['__profile__'].undo()
+#* 没有可撤销的操作.
+mdb.models['Model-1'].sketches['__profile__'].rectangle(point1=(-12.69, 12.69), 
+    point2=(12.69, -12.69))
+mdb.models['Model-1'].sketches['__profile__'].Line(point1=(-25.38, 25.38), 
+    point2=(25.38, -25.38))
+mdb.models['Model-1'].sketches['__profile__'].Line(point1=(25.38, 25.38), 
+    point2=(-25.38, -25.38))
+mdb.models['Model-1'].sketches['__profile__'].autoTrimCurve(curve1=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[6], point1=(
+    -4.99272632598877, 5.89553260803223))
+mdb.models['Model-1'].sketches['__profile__'].autoTrimCurve(curve1=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[7], point1=(
+    6.16851711273193, 6.07502937316895))
+mdb.models['Model-1'].sketches['__profile__'].autoTrimCurve(curve1=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[9], point1=(
+    3.55822658538818, -3.3486270904541))
+mdb.models['Model-1'].sketches['__profile__'].autoTrimCurve(curve1=
+    mdb.models['Model-1'].sketches['__profile__'].geometry[11], point1=(
+    -3.82259464263916, -3.70762062072754))
+mdb.models['Model-1'].parts['Part-1'].PartitionFaceBySketch(faces=
+    mdb.models['Model-1'].parts['Part-1'].faces.getSequenceFromMask(('[#1 ]', 
+    ), ), sketch=mdb.models['Model-1'].sketches['__profile__'], sketchUpEdge=
+    mdb.models['Model-1'].parts['Part-1'].edges[1])
+del mdb.models['Model-1'].sketches['__profile__']
+mdb.models['Model-1'].parts['Part-1'].setMeshControls(regions=
+    mdb.models['Model-1'].parts['Part-1'].faces.getSequenceFromMask(('[#1f ]', 
+    ), ), technique=STRUCTURED)
+mdb.models['Model-1'].parts['Part-1'].seedEdgeByNumber(constraint=FINER, edges=
+    mdb.models['Model-1'].parts['Part-1'].edges.getSequenceFromMask(('[#988 ]', 
+    ), ), number=6)
+mdb.models['Model-1'].parts['Part-1'].generateMesh()
+mdb.models['Model-1'].parts['Part-1'].deleteMesh()
+mdb.models['Model-1'].parts['Part-1'].generateMesh(regions=
+    mdb.models['Model-1'].parts['Part-1'].faces.getSequenceFromMask(('[#10 ]', 
+    ), ))
+mdb.models['Model-1'].parts['Part-1'].seedEdgeByNumber(constraint=FINER, edges=
+    mdb.models['Model-1'].parts['Part-1'].edges.getSequenceFromMask((
+    '[#3462 ]', ), ), number=6)
+mdb.models['Model-1'].parts['Part-1'].seedEdgeByNumber(constraint=FINER, edges=
+    mdb.models['Model-1'].parts['Part-1'].edges.getSequenceFromMask(('[#215 ]', 
+    ), ), number=3)
+mdb.models['Model-1'].parts['Part-1'].generateMesh(regions=
+    mdb.models['Model-1'].parts['Part-1'].faces.getSequenceFromMask(('[#5 ]', 
+    ), ))
+mdb.models['Model-1'].parts['Part-1'].generateMesh(regions=
+    mdb.models['Model-1'].parts['Part-1'].faces.getSequenceFromMask(('[#2 ]', 
+    ), ))
+mdb.models['Model-1'].parts['Part-1'].deleteMesh(regions=
+    mdb.models['Model-1'].parts['Part-1'].faces.getSequenceFromMask(('[#2 ]', 
+    ), ))
+mdb.models['Model-1'].parts['Part-1'].seedEdgeByNumber(constraint=FINER, edges=
+    mdb.models['Model-1'].parts['Part-1'].edges.getSequenceFromMask(('[#60 ]', 
+    ), ), number=3)
+mdb.models['Model-1'].parts['Part-1'].generateMesh(regions=
+    mdb.models['Model-1'].parts['Part-1'].faces.getSequenceFromMask(('[#2 ]', 
+    ), ))
+mdb.models['Model-1'].parts['Part-1'].seedEdgeByNumber(constraint=FINER, edges=
+    mdb.models['Model-1'].parts['Part-1'].edges.getSequenceFromMask((
+    '[#3000 ]', ), ), number=3)
+mdb.models['Model-1'].parts['Part-1'].generateMesh(regions=
+    mdb.models['Model-1'].parts['Part-1'].faces.getSequenceFromMask(('[#8 ]', 
+    ), ))
+# Save by 22947 on 2026_03_08-21.41.50; build 2026 2025_09_23-22.43.03 RELr428 206049
